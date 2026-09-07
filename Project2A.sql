@@ -1,0 +1,215 @@
+-- ============================================================================
+-- CentreFormationCPP - Script Oracle complet
+-- A executer connecte a Oracle avec l'utilisateur ILYESS.
+-- Dans SQL Developer : ouvrir ce fichier puis appuyer sur F5 (Run Script).
+-- Le script ne modifie aucun fichier C++.
+-- ============================================================================
+
+SET SERVEROUTPUT ON;
+
+-- Suppression des objets existants pour rendre le script rejouable.
+BEGIN
+	EXECUTE IMMEDIATE 'DROP TABLE COURS CASCADE CONSTRAINTS';
+EXCEPTION
+	WHEN OTHERS THEN
+		IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+	EXECUTE IMMEDIATE 'DROP TABLE FORMATEUR CASCADE CONSTRAINTS';
+EXCEPTION
+	WHEN OTHERS THEN
+		IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+	EXECUTE IMMEDIATE 'DROP SEQUENCE SEQ_COURS';
+EXCEPTION
+	WHEN OTHERS THEN
+		IF SQLCODE != -2289 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+	EXECUTE IMMEDIATE 'DROP SEQUENCE SEQ_FORMATEUR';
+EXCEPTION
+	WHEN OTHERS THEN
+		IF SQLCODE != -2289 THEN RAISE; END IF;
+END;
+/
+
+-- Table des formateurs utilisee par Formateur.cpp et gformateurcours.cpp.
+CREATE TABLE FORMATEUR (
+	ID_FORMATEUR NUMBER PRIMARY KEY,
+	NOM          VARCHAR2(100) NOT NULL,
+	PRENOM       VARCHAR2(100) NOT NULL,
+	EMAIL        VARCHAR2(150),
+	TELEPHONE    VARCHAR2(50),
+	SPECIALITE   VARCHAR2(100),
+	DATE_EMBAUCHE DATE,
+	STATUS       VARCHAR2(50)
+);
+
+-- Table des cours utilisee par Cours.cpp et le planning.
+-- HEURE_DEBUT et HEURE_FIN sont des minutes depuis minuit : 540 = 09:00.
+CREATE TABLE COURS (
+	ID_COURS      NUMBER PRIMARY KEY,
+	INTITULE      VARCHAR2(150) NOT NULL,
+	CATEGORIE     VARCHAR2(100),
+	NIVEAU        VARCHAR2(50),
+	ID_FORMATEUR  NUMBER,
+	DUREE_HEURES  NUMBER,
+	DATE_DEBUT    DATE,
+	DATE_FIN      DATE,
+	HEURE_DEBUT   NUMBER DEFAULT 540,
+	HEURE_FIN     NUMBER DEFAULT 1020,
+	CAPACITE      NUMBER,
+	PROGRAMME     CLOB,
+	CONSTRAINT FK_COURS_FORMATEUR
+		FOREIGN KEY (ID_FORMATEUR) REFERENCES FORMATEUR(ID_FORMATEUR)
+);
+
+-- Sequences et triggers attendus par Formateur::ensureAutoIncrement()
+-- et Cours::ensureAutoIncrement().
+CREATE SEQUENCE SEQ_FORMATEUR START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE SEQ_COURS START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER TRG_FORMATEUR_ID
+BEFORE INSERT ON FORMATEUR
+FOR EACH ROW
+WHEN (NEW.ID_FORMATEUR IS NULL)
+BEGIN
+	SELECT SEQ_FORMATEUR.NEXTVAL INTO :NEW.ID_FORMATEUR FROM DUAL;
+END;
+/
+
+CREATE OR REPLACE TRIGGER TRG_COURS_ID
+BEFORE INSERT ON COURS
+FOR EACH ROW
+WHEN (NEW.ID_COURS IS NULL)
+BEGIN
+	SELECT SEQ_COURS.NEXTVAL INTO :NEW.ID_COURS FROM DUAL;
+END;
+/
+
+-- Formateurs de demonstration.
+INSERT INTO FORMATEUR
+	(NOM, PRENOM, EMAIL, TELEPHONE, SPECIALITE, DATE_EMBAUCHE, STATUS)
+VALUES
+	('Ben', 'Ahmed', 'ahmed.ben@example.com', '21612345678',
+	 'Programmation', DATE '2020-09-01', 'Actif');
+
+INSERT INTO FORMATEUR
+	(NOM, PRENOM, EMAIL, TELEPHONE, SPECIALITE, DATE_EMBAUCHE, STATUS)
+VALUES
+	('Trabelsi', 'Sonia', 'sonia.trabelsi@example.com', '21622334455',
+	 'Base de donnees', DATE '2021-02-15', 'Actif');
+
+INSERT INTO FORMATEUR
+	(NOM, PRENOM, EMAIL, TELEPHONE, SPECIALITE, DATE_EMBAUCHE, STATUS)
+VALUES
+	('Mansour', 'Karim', 'karim.mansour@example.com', '21699887766',
+	 'Reseaux', DATE '2019-06-10', 'Inactif');
+
+-- Cours de demonstration :
+-- 1) deux cours qui se chevauchent pour afficher une alerte Critique ;
+-- 2) un cours dans les 7 prochains jours ;
+-- 3) un cours d'un formateur inactif ;
+-- 4) un cours en cours aujourd'hui.
+INSERT INTO COURS
+	(INTITULE, CATEGORIE, NIVEAU, ID_FORMATEUR, DUREE_HEURES,
+	 DATE_DEBUT, DATE_FIN, HEURE_DEBUT, HEURE_FIN, CAPACITE, PROGRAMME)
+SELECT 'Programmation C++ avancee', 'Programmation', 'Avance', ID_FORMATEUR,
+	   4, TRUNC(SYSDATE) + 1, TRUNC(SYSDATE) + 1, 540, 780, 20,
+	   'Classes, heritage, polymorphisme et exceptions'
+FROM FORMATEUR WHERE EMAIL = 'ahmed.ben@example.com';
+
+INSERT INTO COURS
+	(INTITULE, CATEGORIE, NIVEAU, ID_FORMATEUR, DUREE_HEURES,
+	 DATE_DEBUT, DATE_FIN, HEURE_DEBUT, HEURE_FIN, CAPACITE, PROGRAMME)
+SELECT 'Bases SQL et Oracle', 'Base de donnees', 'Intermediaire', ID_FORMATEUR,
+	   4, TRUNC(SYSDATE) + 1, TRUNC(SYSDATE) + 1, 720, 960, 18,
+	   'SELECT, jointures, contraintes et transactions'
+FROM FORMATEUR WHERE EMAIL = 'ahmed.ben@example.com';
+
+INSERT INTO COURS
+	(INTITULE, CATEGORIE, NIVEAU, ID_FORMATEUR, DUREE_HEURES,
+	 DATE_DEBUT, DATE_FIN, HEURE_DEBUT, HEURE_FIN, CAPACITE, PROGRAMME)
+SELECT 'Administration reseau', 'Reseaux', 'Debutant', ID_FORMATEUR,
+	   3, TRUNC(SYSDATE) + 10, TRUNC(SYSDATE) + 10, 540, 720, 15,
+	   'Adressage IP, DNS et configuration reseau'
+FROM FORMATEUR WHERE EMAIL = 'karim.mansour@example.com';
+
+INSERT INTO COURS
+	(INTITULE, CATEGORIE, NIVEAU, ID_FORMATEUR, DUREE_HEURES,
+	 DATE_DEBUT, DATE_FIN, HEURE_DEBUT, HEURE_FIN, CAPACITE, PROGRAMME)
+SELECT 'Atelier actuellement en cours', 'Programmation', 'Debutant', ID_FORMATEUR,
+	   2, TRUNC(SYSDATE), TRUNC(SYSDATE), 0, 1439, 25,
+	   'Atelier pratique de programmation'
+FROM FORMATEUR WHERE EMAIL = 'sonia.trabelsi@example.com';
+
+INSERT INTO COURS
+	(INTITULE, CATEGORIE, NIVEAU, ID_FORMATEUR, DUREE_HEURES,
+	 DATE_DEBUT, DATE_FIN, HEURE_DEBUT, HEURE_FIN, CAPACITE, PROGRAMME)
+SELECT 'Projet final Java', 'Programmation', 'Avance', ID_FORMATEUR,
+	   5, TRUNC(SYSDATE) + 30, TRUNC(SYSDATE) + 30, 540, 840, 12,
+	   'Conception et livraison d une application complete'
+FROM FORMATEUR WHERE EMAIL = 'sonia.trabelsi@example.com';
+
+COMMIT;
+
+-- Verification du schema et des donnees dans SQL Developer.
+SELECT USER AS UTILISATEUR_CONNECTE FROM DUAL;
+
+SELECT TABLE_NAME
+FROM USER_TABLES
+WHERE TABLE_NAME IN ('FORMATEUR', 'COURS')
+ORDER BY TABLE_NAME;
+
+SELECT SEQUENCE_NAME
+FROM USER_SEQUENCES
+WHERE SEQUENCE_NAME IN ('SEQ_FORMATEUR', 'SEQ_COURS')
+ORDER BY SEQUENCE_NAME;
+
+SELECT ID_FORMATEUR, NOM, PRENOM, SPECIALITE, STATUS
+FROM FORMATEUR
+ORDER BY ID_FORMATEUR;
+
+SELECT ID_COURS, INTITULE, ID_FORMATEUR, DATE_DEBUT, DATE_FIN,
+	   HEURE_DEBUT, HEURE_FIN
+FROM COURS
+ORDER BY ID_COURS;
+
+-- Requetes correspondant aux quatre alertes de l application.
+-- Chevauchements de cours pour un meme formateur.
+SELECT f.NOM || ' ' || f.PRENOM AS FORMATEUR,
+	   c1.INTITULE AS COURS_1,
+	   c2.INTITULE AS COURS_2
+FROM COURS c1
+JOIN COURS c2 ON c1.ID_FORMATEUR = c2.ID_FORMATEUR
+JOIN FORMATEUR f ON f.ID_FORMATEUR = c1.ID_FORMATEUR
+WHERE c1.ID_COURS < c2.ID_COURS
+  AND c1.DATE_DEBUT + NVL(c1.HEURE_DEBUT, 540) / 1440
+	  < c2.DATE_FIN + NVL(c2.HEURE_FIN, 1020) / 1440
+  AND c2.DATE_DEBUT + NVL(c2.HEURE_DEBUT, 540) / 1440
+	  < c1.DATE_FIN + NVL(c1.HEURE_FIN, 1020) / 1440;
+
+-- Cours commençant dans les sept prochains jours.
+SELECT INTITULE, DATE_DEBUT
+FROM COURS
+WHERE DATE_DEBUT BETWEEN SYSDATE AND SYSDATE + 7
+ORDER BY DATE_DEBUT;
+
+-- Formateurs inactifs qui ont encore des cours planifies.
+SELECT DISTINCT f.NOM || ' ' || f.PRENOM AS FORMATEUR
+FROM FORMATEUR f
+JOIN COURS c ON c.ID_FORMATEUR = f.ID_FORMATEUR
+WHERE LOWER(f.STATUS) = 'inactif';
+
+-- Cours en cours aujourd hui.
+SELECT INTITULE
+FROM COURS
+WHERE DATE_DEBUT <= SYSDATE
+  AND DATE_FIN >= SYSDATE;

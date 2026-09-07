@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1491</width>
+    <height>843</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidgetModules">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="pageFormateurs">
+       <attribute name="title">
+        <string>Formateurs</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QTabWidget" name="tabFormateursSections">
+          <property name="currentIndex">
+           <number>3</number>
+          </property>
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string>Gestion</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QGroupBox" name="gbFormFormateur">
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_3">
+               <item>
+                <widget class="QLabel" name="label">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Formulaire</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="leNom">
+                 <property name="text">
+                  <string>Nom</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lePrenom">
+                 <property name="text">
+                  <string>Prénom</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="leEmail">
+                 <property name="text">
+                  <string>Email</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="leTelephone">
+                 <property name="text">
+                  <string>Téléphone</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cbSpecialite">
+                 <item>
+                  <property name="text">
+                   <string>Cloud / DevOps</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Programmation C++</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Programmation Python</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Developpement Web</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Base de données</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Réseau &amp; systémes</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>IA</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateEdit" name="deDateEmbauche">
+                 <property name="minimumSize">
+                  <size>
+                   <width>677</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cbStatus">
+                 <item>
+                  <property name="text">
+                   <string>Actif</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Inactif</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnAjouterFormateur">
+                 <property name="text">
+                  <string>Ajouter</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnModifierFormateur">
+                 <property name="text">
+                  <string>Modifier</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnSupprimerFormateur">
+                 <property name="text">
+                  <string>Supprimer</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnViderFormateur">
+                 <property name="text">
+                  <string>Vider</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableView" name="tvFormateurs">
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_2">
+           <attribute name="title">
+            <string>Recherche/Tri</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QGroupBox" name="gbFiltreFormateur">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;suii&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="title">
+               <string/>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <widget class="QTableView" name="tvResultatFormateurs"/>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="leRechercheNom">
+                 <property name="placeholderText">
+                  <string>Nom à rechercher</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cbFiltreSpecialite">
+                 <item>
+                  <property name="text">
+                   <string>Toutes</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Cloud / DevOps</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Programmation C++</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Programmation Python</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Developpement Web</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Base de données</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>IA</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Réseau &amp; systémes</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateEdit" name="deDateDebut">
+                 <property name="minimumSize">
+                  <size>
+                   <width>1389</width>
+                   <height>29</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateEdit" name="deDateFin"/>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cbTrierPar">
+                 <item>
+                  <property name="text">
+                   <string>Nom</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Spécialité</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Date d'embauche</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxDesc">
+                 <property name="text">
+                  <string>Décroissant</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnRechercher">
+                 <property name="text">
+                  <string>Rechercher</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_3">
+           <attribute name="title">
+            <string>Statistiques</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QChartView" name="chartViewFormateurs" native="true"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblStatInfoFormateurs">
+              <property name="text">
+               <string>Survolez une part du diagramme pour afficher le détail.</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignmentFlag::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnActualiserStatsFormateurs">
+              <property name="text">
+               <string>Actualiser</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_4">
+           <attribute name="title">
+            <string>Document</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLabel" name="CheminPDF">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="cbSelectFormateurDoc">
+              <item>
+               <property name="text">
+                <string>Formateur </string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnGenererPdfFormateur">
+              <property name="text">
+               <string>Generer PDF</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pageCours">
+       <attribute name="title">
+        <string>Cours</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QTabWidget" name="tabCoursSections">
+          <property name="currentIndex">
+           <number>2</number>
+          </property>
+          <widget class="QWidget" name="tab_5">
+           <attribute name="title">
+            <string>Gestion</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QGroupBox" name="gbFormCours">
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_10">
+               <item>
+                <widget class="QLineEdit" name="leIntitule">
+                 <property name="text">
+                  <string>Intitulé</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cbCategorie">
+                 <item>
+                  <property name="text">
+                   <string>Programmation C++</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Réseaux &amp; systémes</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>IA</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Developpement Web</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Programmation Python </string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Cloud / DevOps</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Base de données</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cbNiveau">
+                 <item>
+                  <property name="text">
+                   <string>Débutant</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Intermédiaire</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Avancé</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cbFormateur">
+                 <item>
+                  <property name="text">
+                   <string>Ahmed</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Sami</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Ali</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="sbDuree">
+                 <property name="suffix">
+                  <string>heures</string>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateEdit" name="deDateDebutCours">
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateEdit" name="deDateFinCours">
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_Heures">
+                 <item>
+                  <widget class="QLabel" name="labelHeureDebutCours">
+                   <property name="text">
+                    <string>Heure début</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTimeEdit" name="teHeureDebutCours">
+                   <property name="displayFormat">
+                    <string>HH:mm</string>
+                   </property>
+                   <property name="time">
+                    <time>
+                     <hour>9</hour>
+                     <minute>0</minute>
+                     <second>0</second>
+                    </time>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelHeureFinCours">
+                   <property name="text">
+                    <string>Heure fin</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTimeEdit" name="teHeureFinCours">
+                   <property name="displayFormat">
+                    <string>HH:mm</string>
+                   </property>
+                   <property name="time">
+                    <time>
+                     <hour>17</hour>
+                     <minute>0</minute>
+                     <second>0</second>
+                    </time>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="sbCapacite">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="teProgramme"/>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnAjouterCours">
+                 <property name="text">
+                  <string>Ajouter</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnModifierCours">
+                 <property name="text">
+                  <string>Modifier</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnSupprimerCours">
+                 <property name="text">
+                  <string>Supprimer</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnViderCours">
+                 <property name="text">
+                  <string>Vider</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableView" name="tvCours"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_6">
+           <attribute name="title">
+            <string>Recherche/Tri</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QGroupBox" name="gbFiltreCours">
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QComboBox" name="cbTrierParCours">
+                 <item>
+                  <property name="text">
+                   <string>Aucun</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Intitulé</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Niveau</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Durée</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Date de début</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cbFiltreNiveau">
+                 <item>
+                  <property name="text">
+                   <string>Tous</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Debutant</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Intermédiaire</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Avancée</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="leDureeMin">
+                 <property name="placeholderText">
+                  <string>Durée min</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="leDureeMax">
+                 <property name="placeholderText">
+                  <string>Durée max</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="leRechercheIntitule">
+                 <property name="placeholderText">
+                  <string>Intitulé à rechercher</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cbFiltreFormateur">
+                 <item>
+                  <property name="text">
+                   <string>Formateur</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBox">
+                 <property name="text">
+                  <string>Decroissant</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnRechercherCours">
+                 <property name="text">
+                  <string>Rechercher</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableView" name="tableView"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_7">
+           <attribute name="title">
+            <string>Statistiques</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QChartView" name="chartViewCours" native="true"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_stats_cours">
+              <item>
+               <widget class="QLabel" name="labelGroupeCours">
+                <property name="text">
+                 <string>Grouper par :</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbStatCoursGroupe">
+                <item>
+                 <property name="text">
+                  <string>Niveau</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Catégorie</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnActualiserStatsCours">
+                <property name="text">
+                 <string>Actualiser</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblStatInfoCours">
+              <property name="text">
+               <string>Survolez une part du diagramme pour afficher le détail.</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignmentFlag::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_8">
+           <attribute name="title">
+            <string>Document</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <widget class="QComboBox" name="cbSelectCoursDoc">
+              <item>
+               <property name="text">
+                <string>Programmation</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>IA</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>COURS 1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>COURS 2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Tous</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnGenererDocCours">
+              <property name="text">
+               <string>Générer PDF</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblStatusDocCours">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pagePlanning">
+       <attribute name="title">
+        <string>Planning</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_planning">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_planning">
+          <item>
+           <widget class="QLabel" name="labelPlanningFormateur">
+            <property name="text">
+             <string>Formateur :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbPlanningFormateur">
+            <item>
+             <property name="text">
+              <string>Tous</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbPlanningVue">
+            <item>
+             <property name="text">
+              <string>Par jour</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Par heure</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDateEdit" name="dePlanningJour">
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnActualiserPlanning">
+            <property name="text">
+             <string>Actualiser</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacerPlanning">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="saGantt">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="saGanttContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>1441</width>
+             <height>697</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pageAlertes">
+       <attribute name="title">
+        <string>Alertes</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_alertes">
+        <item>
+         <widget class="QLabel" name="lblAlertesInfo">
+          <property name="text">
+           <string>Vérification des règles métier...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="twAlertes"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnActualiserAlertes">
+          <property name="text">
+           <string>Actualiser les alertes</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QWidget</extends>
+   <header location="global">qchartview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
