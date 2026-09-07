@@ -1,0 +1,22 @@
+db_credentials.ini
+
+# Qt and compiler generated files
+build/
+debug/
+release/
+*.user
+*.user.*
+*.pro.user
+*.pro.user.*
+
+# Local build system artifacts
+.qmake.stash
+Makefile
+Makefile.Debug
+Makefile.Release
+
+# IDE and operating-system files
+.qtcreator/
+.vscode/
+Thumbs.db
+Desktop.ini
